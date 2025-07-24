@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar, Pencil, X } from 'lucide-react';
-
+const API_BASE_URL = process.env.VITE_API_BASE_URL;
 const TaskEditModal = ({ isOpen, onClose, onTaskUpdated, taskId }) => {
   const [task, setTask] = useState({
     title: '',
@@ -22,8 +22,8 @@ const TaskEditModal = ({ isOpen, onClose, onTaskUpdated, taskId }) => {
     try {
       setLoading(true);
       setError('');
-      
-      const res = await fetch(`http://localhost:3000/api/tasks/single/${taskId}`, {
+
+      const res = await fetch(`${API_BASE_URL}/tasks/single/${taskId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json'

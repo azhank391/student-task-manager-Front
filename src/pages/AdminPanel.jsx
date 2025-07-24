@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Users, CheckCircle, Clock, BarChart3, User, Calendar, Mail, LogOut, Menu, X, Plus, UserPlus } from 'lucide-react';
 
 // Add Admin Modal Component
+
+const API_BASE_URL = process.env.VITE_API_BASE_URL;
 const AddAdminModal = ({ isOpen, onClose, onSuccess }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -50,7 +52,7 @@ const AddAdminModal = ({ isOpen, onClose, onSuccess }) => {
     setIsLoading(true);
     
     try {
-      const res = await fetch('http://localhost:3000/api/admin/createAdmin', {
+      const res = await fetch(`${API_BASE_URL}/admin/createAdmin`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -253,7 +255,7 @@ export default function AdminDashboard() {
   // API call helper
   const apiCall = async (endpoint) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`http://localhost:3000/api/admin/${endpoint}`, {
+    const response = await fetch(`${API_BASE_URL}/admin/${endpoint}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'

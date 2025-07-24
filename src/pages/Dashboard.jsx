@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import TaskFormModal from '../components/TaskForm'; // Import the modal component
 import {toast} from 'react-toastify'
 import TaskEditModal from '../components/TaskEditForm';
+const API_BASE_URL = process.env.VITE_API_BASE_URL;
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -66,7 +67,7 @@ const Dashboard = () => {
       setError('');
       
       // Use actual API call with user ID from token
-      const response = await fetch(`http://localhost:3000/api/tasks/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/tasks/${userId}`, {
         method: 'GET',
         headers: { 
           'Authorization': `Bearer ${token}`,
@@ -97,7 +98,7 @@ const Dashboard = () => {
 
   const handleDeleteTask = async (taskId) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+      const res = await fetch(`${API_BASE_URL}/tasks/${taskId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -118,7 +119,7 @@ const Dashboard = () => {
 
   const handleCompletedTask = async (taskId) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/tasks/${taskId}/toggle`, {
+      const res = await fetch(`${API_BASE_URL}/tasks/${taskId}/toggle`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

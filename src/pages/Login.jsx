@@ -5,7 +5,7 @@ import { useGoogleOneTapLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { toast } from 'react-toastify';
 
-
+const API_BASE_URL = process.env.VITE_API_BASE_URL;
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +32,7 @@ const Login = () => {
       console.log('Google user info:', user);
       
       // Send to your backend
-      const res = await fetch('http://localhost:3000/api/auth/google/login', {
+      const res = await fetch(`${API_BASE_URL}/auth/google/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ const Login = () => {
   const handleLogin = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/auth/login', {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

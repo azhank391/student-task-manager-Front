@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Calendar, Plus } from "lucide-react";
-
+const API_BASE_URL = process.env.VITE_API_BASE_URL;
 const TaskFormModal = ({ isOpen, onClose, onTaskCreated }) => {
   const [formData, setFormData] = useState({
     title: "",
@@ -96,7 +96,7 @@ const TaskFormModal = ({ isOpen, onClose, onTaskCreated }) => {
       };
 
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/tasks", {
+      const response = await fetch(`${API_BASE_URL}/tasks`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
