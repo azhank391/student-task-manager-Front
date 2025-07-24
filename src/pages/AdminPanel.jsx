@@ -3,7 +3,7 @@ import { Users, CheckCircle, Clock, BarChart3, User, Calendar, Mail, LogOut, Men
 
 // Add Admin Modal Component
 
-const API_BASE_URL = process.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const AddAdminModal = ({ isOpen, onClose, onSuccess }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
