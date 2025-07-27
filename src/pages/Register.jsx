@@ -9,7 +9,7 @@ const RegisterPage = () => {
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const handleRegister = async()=>{
     try{
-    const res = await fetch(`${API_BASE_URL}/auth/register`, {
+    const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
