@@ -96,7 +96,7 @@ const TaskFormModal = ({ isOpen, onClose, onTaskCreated }) => {
       };
 
       const token = localStorage.getItem("token");
-      const response = await fetch(`${API_BASE_URL}/tasks`, {
+      const response = await fetch(`${API_BASE_URL}/api/tasks`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
