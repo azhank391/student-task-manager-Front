@@ -52,7 +52,7 @@ const AddAdminModal = ({ isOpen, onClose, onSuccess }) => {
     setIsLoading(true);
     
     try {
-      const res = await fetch(`${API_BASE_URL}/admin/createAdmin`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/createAdmin`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -255,7 +255,7 @@ export default function AdminDashboard() {
   // API call helper
   const apiCall = async (endpoint) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`${API_BASE_URL}/admin/${endpoint}`, {
+    const response = await fetch(`${API_BASE_URL}/api/admin/${endpoint}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
